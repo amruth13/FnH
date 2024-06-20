@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <script>
+        var CreateInput = function(options) {
+    var _inputDiv;
+    var _input;
+    var _input2;
+
+    this.construct = function() {
+        _inputDiv = $('<div>').addClass("test");
+
+        if (options && (options.inputType === 'datetime' || options.inputType === 'timedate')) {
+            _input2 = $("<input type='date'>");
+            _input = $("<input type='time'>");
+            
+        } else if (options && options.inputType === 'time') {
+            _input = $("<input type='time'>");
+        } else {
+            _input = $("<input type='date'>");
+        }
+
+        _inputDiv.append(_input2);
+        _inputDiv.append(_input);
+    };
+
+    this.val = function(val) {
+        if (val !== undefined) {
+            
+        //   _input.val(val.time);
+        //     _input2.val(val.date);
+
+        if(new Date( _input2.val(val.date))==true)
+        {
+            _input2.val(val.date);
+        }
+        else{
+            console.log('enter date in correct format');
+        }
+         
+        } else {
+            return {
+                date: _input2.val(),
+                time: _input.val()
+            };
+
+            
+        }
+    };
+
+    this.addToDom = function() {
+        $("body").append(_inputDiv);
+    };
+
+    this.construct();
+};
+
+
+let obj = new CreateInput({"inputType": "datetime"});
+obj.addToDom();
+
+// obj.val({ date: '2024-10-19', time: '12:00' });
+
+console.log(obj.val()); 
+
+    </script>
+    
+</body>
+</html>

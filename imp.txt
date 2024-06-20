@@ -1,0 +1,53 @@
+
+    this.Clear = function() {
+        if (_input2) {
+            _input2.val('');
+        }
+        if (_input) {
+            _input.val('');
+        }
+    };
+
+
+
+
+    function initNow() {
+        var now = new Date();
+        var currentDate = now.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        var currentTime = now.toTimeString().slice(0, 5); // Format: HH:MM
+
+        // Update existing instances
+        obj.val({ time: currentTime });
+        obu.val({ date: currentDate });
+        run.val({ date: currentDate, time: currentTime });
+    }
+
+
+
+
+
+private :-
+
+
+ function initNowPrivate() {
+            var now = new Date();
+            var currentDate = now.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+            var currentTime = now.toTimeString().slice(0, 5); // Format: HH:MM
+
+            // Update existing instances
+            if (options.inputType === 'time') {
+                self.val({ time: currentTime });
+            } else if (options.inputType === 'date') {
+                self.val({ date: currentDate });
+            } else if (options.inputType === 'datetime' || options.inputType === 'timedate') {
+                self.val({ date: currentDate, time: currentTime });
+            }
+        }
+
+        // Public method to expose initialization functionality
+        this.initNow = function() {
+            initNowPrivate();
+        };
+
+
+

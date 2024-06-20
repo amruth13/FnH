@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice2</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <script>
+//     var CreateInput = function(options) {
+//     var _inputDiv;
+//     var _input;
+//     var _input2;
+
+//     this.construct = function()
+//      {
+//         _inputDiv = $('<div>').addClass("test");
+
+//         if (options && (options.inputType === 'datetime' || options.inputType === 'timedate')) 
+//         {
+//             // _input = $("<input type='datetime-local'>");
+//             _input2 = $("<input type='date'>");
+//             _input = $("<input type='time'>");
+//         }
+//          else if (options && options.inputType === 'time')
+//         {
+//             _input = $("<input type='time'>");
+//         } 
+//         else 
+//         {
+//             _input = $("<input type='date'>");
+//         }
+//         _inputDiv.append(_input2);
+//         _inputDiv.append(_input);
+       
+
+//     };
+
+//     this.val = function(val) 
+//     {
+//         if (val !== undefined) 
+//         {
+//             if (options.inputType === 'datetime' || options.inputType === 'timedate')
+//             {
+//                 var parts = val.split(":");
+//                 var date = parts[0];
+//                 var time = parts[1];
+//                 var dateTimeString = date+ "-" + time;
+
+//                 _input.val(dateTimeString);
+//             } 
+//             else if (options.inputType === 'time')
+//             {
+//                 _input.val(val);
+//             } 
+//             else 
+//             {
+//                 _input.val(val);
+//             }
+//         }
+//          else 
+//         {
+//             return _input.val();
+//         }
+//     };
+
+//     this.addToDom = function()
+    
+//     {
+//         $("body").append(_inputDiv);
+//     };
+
+//     this.construct();
+// };
+
+// let obj = new CreateInput({"inputType": "datetime"});
+// obj.addToDom();
+
+
+// obj.val("2001-10-10:10:10");
+
+
+
+var CreateInput = function(options) {
+    var _inputDiv;
+    var _input;
+    var _input2;
+
+    this.construct = function() {
+        _inputDiv = $('<div>').addClass("test");
+
+        if (options && (options.inputType === 'datetime' || options.inputType === 'timedate')) {
+            _input2 = $("<input type='date'>");
+            _input = $("<input type='time'>");
+            
+        } else if (options && options.inputType === 'time') {
+            _input = $("<input type='time'>");
+        } else {
+            _input = $("<input type='date'>");
+        }
+
+        _inputDiv.append(_input2);
+        _inputDiv.append(_input);
+    };
+
+    this.val = function(val) {
+        if (val !== undefined) {
+
+          _input.val(val.time);
+            _input2.val(val.date);
+         
+        } else {
+            return {
+                date: _input2.val(),
+                time: _input.val()
+            };
+
+            
+        }
+    };
+
+    this.addToDom = function() {
+        $("body").append(_inputDiv);
+    };
+
+    this.construct();
+};
+
+
+let obj = new CreateInput({"inputType": "time"});
+obj.addToDom();
+
+// obj.val({ date: '2024-08-19', time: '12:00' });
+
+// console.log(obj.val()); 
+
+
+    </script>
+</body>
+</html>
